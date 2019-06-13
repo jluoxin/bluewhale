@@ -19,9 +19,9 @@ from settings import APP_ID
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # 默认用mysql
-        'NAME': 'wyfsaas14',                        # 数据库名 (默认与APP_ID相同)
-        'USER': 'wyfsaas14',                            # 你的数据库user
-        'PASSWORD': 'wyfsaas14@2018',                        # 你的数据库password
+        'NAME': 'wyfsaas15',                        # 数据库名 (默认与APP_ID相同)
+        'USER': 'wyfsaas15',                            # 你的数据库user
+        'PASSWORD': 'wyfsaas15@2018',                        # 你的数据库password
         'HOST': '10.130.44.108',                   		   # 数据库HOST
         'PORT': '3306',                        # 默认3306
     },
