@@ -121,6 +121,7 @@ INSTALLED_APPS = (
     'account',
     'home_application',
     'iwork',
+    'get_capacity',
 )
 
 # ==============================================================================

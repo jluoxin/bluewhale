@@ -28,6 +28,8 @@ urlpatterns = patterns(
     url(r'^', include('home_application.urls')),
     # 会议管理
     url(r'^iwork/',include('iwork.urls')),
+    # 机器磁盘容量查询
+    url(r'^get_capacity/',include('get_capacity.urls')),
 )
 
 
