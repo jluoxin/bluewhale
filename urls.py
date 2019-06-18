@@ -30,6 +30,8 @@ urlpatterns = patterns(
     url(r'^iwork/',include('iwork.urls')),
     # 机器磁盘容量查询
     url(r'^get_capacity/',include('get_capacity.urls')),
+    # API入口
+    url(r'^api/get_capacity/',include('get_capacity.api_urls'))
 )
 
 
