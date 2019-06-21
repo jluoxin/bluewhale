@@ -10,13 +10,26 @@ See the License for the specific language governing permissions and limitations 
 """
 
 from common.mymako import render_mako_context
-
+from blueking.component.shortcuts import get_client_by_request
+from home_application.celery_tasks import async_task, execute_task, get_time
 
 def home(request):
     """
     首页
     """
-    return render_mako_context(request, '/home_application/home.html')
+    # return render_mako_context(request, '/home_application/home.html')
+
+    # 调用自己开发的API组件
+    client = get_client_by_request(request)
+    kwargs = {'token': '@adf*adsd^'}
+    resp = client.cm.get_capacity(**kwargs)
+    
+    # 执行celery异步任务
+    async_task.delay(1, 2, 1)
+
+    # 执行定时任务
+    execute_task(2)
+    return render_mako_context(request, '/home_application/home.html', {'result': resp})
 
 
 def dev_guide(request):

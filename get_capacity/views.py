@@ -3,8 +3,11 @@ from django.shortcuts import render
 from common.mymako import render_mako_context, render_json
 from blueking.component.shortcuts import get_client_by_request
 from get_capacity.models import CapacityData
+from common.log import logger
+from get_capacity.utils import get_job_instance_id,get_host_capaticy
+from django.views.decorators.csrf import csrf_exempt
 
-# Create your views here.
+# Create your views here.   
 def home(request):
     """
     Home Page
@@ -96,6 +99,7 @@ def get_joblist_by_bizid(request):
 #------------------------------------
 # 执行作业，获取实时磁盘容量数据
 #------------------------------------
+@csrf_exempt
 def execute_job(request):
     """
     执行磁盘容量查询作业
@@ -103,7 +107,8 @@ def execute_job(request):
     biz_id = request.POST.get('biz_id')
     ip = request.POST.get('ip')
     job_id = request.POST.get('job_id')
-    
+    logger.info("zhixing1 cm!!!!!!!!!!!!!!!!")
+
     # 调用作业平台API，或者作业执行实例ID 
     client = get_client_by_request(request)
     result, job_instance_id = get_job_instance_id(client, biz_id, ip, job_id)
@@ -134,8 +139,8 @@ def get_capacity_chartdata(requset):
     """
     获取视图数据
     """
-    mounted = ''  # 请修改为你需要查看的mounted
-    ip = ''       # 请修改为你需要查看的IP
+    mounted = '/'  # 请修改为你需要查看的mounted
+    ip = '10.130.41.39'       # 请修改为你需要查看的IP
     capacitydatas = CapacityData.objects.filter(mounted=mounted, ip=ip)
     times = []
     data_dir = []
